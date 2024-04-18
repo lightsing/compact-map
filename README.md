@@ -44,9 +44,10 @@ The benchmark code can be found in the `benches` directory.
 The benchmark uses a random action sequence of 1000 insertions, deletions with different key types.
 
 **Note**: Smaller is better.
-
+<p align="center">
 <img src="./benches/random_test_u8_key_pair.svg" alt="u8 key pair" width="45%">
 <img src="./benches/random_test_u16_key_pair.svg" alt="u16 key pair" width="45%">
 <img src="./benches/random_test_u32_key_pair.svg" alt="u32 key pair" width="45%">
 <img src="./benches/random_test_u64_key_pair.svg" alt="u64 key pair" width="45%">
 <img src="./benches/random_test_u128_key_pair.svg" alt="u128 key pair" width="45%">
+</p>
