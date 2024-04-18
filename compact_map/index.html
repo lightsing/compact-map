@@ -1,8 +1,101 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Small map in various sizes. These store a certain number of entries inline, and fall back to a `HashMap` for larger allocations."><title>compact_map - Rust</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-9e1300b5663a8a03.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="compact_map" data-themes="" data-resource-suffix="" data-rustdoc-version="1.79.0-nightly (8b2459c1f 2024-04-09)" data-channel="nightly" data-search-js="search-ffac13a0df2b1870.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../static.files/storage-e32f0c247825364d.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-c97aec732c613ca4.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-09095024cf37855e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../compact_map/index.html">compact_map</a><span class="version">0.1.0</span></h2></div><div class="sidebar-elems"><ul class="block">
             <li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li></ul></section></div></nav><div class="sidebar-resizer"></div>
-    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../compact_map/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">compact_map</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/compact_map/lib.rs.html#7-1788">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Small map in various sizes. These store a certain number of entries inline, and fall back
+    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../compact_map/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">compact_map</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/compact_map/lib.rs.html#7-1891">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Small map in various sizes. These store a certain number of entries inline, and fall back
 to a <code>HashMap</code> for larger allocations.</p>
 <p>Provides (almost) 1:1 API compatibility with <a href="https://doc.rust-lang.org/nightly/std/collections/hash/map/struct.HashMap.html" title="struct std::collections::hash::map::HashMap"><code>HashMap</code></a>.</p>
+<h2 id="examples"><a class="doc-anchor" href="#examples">§</a>Examples</h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>compact_map::CompactMap;
+
+<span class="comment">// Type inference lets us omit an explicit type signature except for the capacity
+// (which would be `CompactMap&lt;String, String, N&gt;` in this example).
+// Also with default capacity of 16.
+</span><span class="kw">let </span><span class="kw-2">mut </span>book_reviews = CompactMap::default();
+
+<span class="comment">// Review some books.
+</span>book_reviews.insert(
+    <span class="string">"Adventures of Huckleberry Finn"</span>.to_string(),
+    <span class="string">"My favorite book."</span>.to_string(),
+);
+book_reviews.insert(
+    <span class="string">"Grimms' Fairy Tales"</span>.to_string(),
+    <span class="string">"Masterpiece."</span>.to_string(),
+);
+book_reviews.insert(
+    <span class="string">"Pride and Prejudice"</span>.to_string(),
+    <span class="string">"Very enjoyable."</span>.to_string(),
+);
+book_reviews.insert(
+    <span class="string">"The Adventures of Sherlock Holmes"</span>.to_string(),
+    <span class="string">"Eye lyked it alot."</span>.to_string(),
+);
+
+<span class="comment">// Check for a specific one.
+// When collections store owned values (String), they can still be
+// queried using references (&amp;str).
+</span><span class="kw">if </span>!book_reviews.contains_key(<span class="string">"Les Misérables"</span>) {
+    <span class="macro">println!</span>(<span class="string">"We've got {} reviews, but Les Misérables ain't one."</span>,
+             book_reviews.len());
+}
+
+<span class="comment">// oops, this review has a lot of spelling mistakes, let's delete it.
+</span>book_reviews.remove(<span class="string">"The Adventures of Sherlock Holmes"</span>);
+
+<span class="comment">// Look up the values associated with some keys.
+</span><span class="kw">let </span>to_find = [<span class="string">"Pride and Prejudice"</span>, <span class="string">"Alice's Adventure in Wonderland"</span>];
+<span class="kw">for </span><span class="kw-2">&amp;</span>book <span class="kw">in </span><span class="kw-2">&amp;</span>to_find {
+    <span class="kw">match </span>book_reviews.get(book) {
+        <span class="prelude-val">Some</span>(review) =&gt; <span class="macro">println!</span>(<span class="string">"{book}: {review}"</span>),
+        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">"{book} is unreviewed."</span>)
+    }
+}
+
+<span class="comment">// Look up the value for a key (will panic if the key is not found).
+</span><span class="macro">println!</span>(<span class="string">"Review for Jane: {}"</span>, book_reviews[<span class="string">"Pride and Prejudice"</span>]);
+
+<span class="comment">// Iterate over everything.
+</span><span class="kw">for </span>(book, review) <span class="kw">in </span><span class="kw-2">&amp;</span>book_reviews {
+    <span class="macro">println!</span>(<span class="string">"{book}: \"{review}\""</span>);
+}</code></pre></div>
+<p>A <code>CompactMap</code> with a known list of items can be initialized from an array:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>compact_map::CompactMap;
+
+<span class="comment">// You need to specify the size of the map.
+</span><span class="kw">let </span>solar_distance = CompactMap::&lt;<span class="kw">_</span>, <span class="kw">_</span>, <span class="number">4</span>&gt;::from([
+    (<span class="string">"Mercury"</span>, <span class="number">0.4</span>),
+    (<span class="string">"Venus"</span>, <span class="number">0.7</span>),
+    (<span class="string">"Earth"</span>, <span class="number">1.0</span>),
+    (<span class="string">"Mars"</span>, <span class="number">1.5</span>),
+]);</code></pre></div>
+<p><code>CompactMap</code> implements an <a href="struct.CompactMap.html#method.entry" title="method compact_map::CompactMap::entry"><code>Entry</code> API</a>, which allows
+for complex methods of getting, setting, updating and removing keys and
+their values:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>compact_map::CompactMap;
+
+<span class="comment">// type inference lets us omit an explicit type signature except for the capacity
+// (which would be `CompactMap&lt;&amp;str, u8, N&gt;` in this example).
+</span><span class="kw">let </span><span class="kw-2">mut </span>player_stats = CompactMap::&lt;<span class="kw">_</span>, <span class="kw">_</span>, <span class="number">5</span>&gt;::new();
+
+<span class="kw">fn </span>random_stat_buff() -&gt; u8 {
+    <span class="comment">// could actually return some random value here - let's just return
+    // some fixed value for now
+    </span><span class="number">42
+</span>}
+
+<span class="comment">// insert a key only if it doesn't already exist
+</span>player_stats.entry(<span class="string">"health"</span>).or_insert(<span class="number">100</span>);
+
+<span class="comment">// insert a key using a function that provides a new value only if it
+// doesn't already exist
+</span>player_stats.entry(<span class="string">"defence"</span>).or_insert_with(random_stat_buff);
+
+<span class="comment">// update a key, guarding against the key possibly not being set
+</span><span class="kw">let </span>stat = player_stats.entry(<span class="string">"attack"</span>).or_insert(<span class="number">100</span>);
+<span class="kw-2">*</span>stat += random_stat_buff();
+
+<span class="comment">// modify an entry before an insert with in-place mutation
+</span>player_stats.entry(<span class="string">"mana"</span>).and_modify(|mana| <span class="kw-2">*</span>mana += <span class="number">200</span>).or_insert(<span class="number">100</span>);</code></pre></div>
 <h3 id="optional-features"><a class="doc-anchor" href="#optional-features">§</a>Optional Features</h3><h4 id="map_entry_replace"><a class="doc-anchor" href="#map_entry_replace">§</a><code>map_entry_replace</code></h4>
 <p><strong>This feature is unstable and requires a nightly build of the Rust toolchain.</strong></p>
 <p><em>This feature enables the <code>map_entry_replace</code> feature gate.</em></p>
