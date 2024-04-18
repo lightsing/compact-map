@@ -32,3 +32,21 @@ fn main() {
 }
 ```
 
+## Performance
+
+Consider using `CompactMap` when the number of key-value pairs is small (e.g., less than 32).
+
+The following benchmarks are generated using `criterion` with `HashMap` as the baseline
+on a machine with an AMD Ryzen 9 5950X CPU and 128GB of 2400MHz DDR4 RAM.
+
+The benchmark code can be found in the `benches` directory.
+
+The benchmark uses a random action sequence of 1000 insertions, deletions with different key types.
+
+**Note**: Smaller is better.
+
+<img src="./benches/random_test_u8_key_pair.svg" alt="u8 key pair" width="45%">
+<img src="./benches/random_test_u16_key_pair.svg" alt="u16 key pair" width="45%">
+<img src="./benches/random_test_u32_key_pair.svg" alt="u32 key pair" width="45%">
+<img src="./benches/random_test_u64_key_pair.svg" alt="u64 key pair" width="45%">
+<img src="./benches/random_test_u128_key_pair.svg" alt="u128 key pair" width="45%">
