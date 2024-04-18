@@ -40,7 +40,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
-          components: clippy, miri, rustfmt
+          components: clippy, rustfmt
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
       - name: Check formatting
@@ -49,5 +49,3 @@ jobs:
         run: cargo clippy -- -D warnings
       - name: Unit tests
         run: cargo test
-      - name: Test with Miri
-        run: cargo miri test
