@@ -1,0 +1,22 @@
+[package]
+name = "compact-map"
+version = "0.1.0"
+edition = "2021"
+authors = ["Haruka Akase <light.tsing@gmail.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/lightsing/compact-map.git"
+description = "'Small map' optimization: store up to a small number of key-value pairs on the stack."
+keywords = ["small", "map", "stack", "hashmap"]
+categories = ["data-structures"]
+readme = "README.md"
+documentation = "https://docs.rs/compact-map"
+
+[dependencies]
+heapless = "0.8"
+
+[features]
+map_entry_replace = []
+extract_if = []
+entry_insert = []
+many_mut = []
+map_try_insert = []
