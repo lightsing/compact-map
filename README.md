@@ -15,3 +15,20 @@
 
 'Small map' optimization: store up to a small number of key-value pairs on the stack.
 
+Provides '1:1' API compatibility with `std::collections::HashMap`.
+
+## Example
+
+```rust
+use compact_map::CompactMap;
+
+fn main() {
+    let mut map = CompactMap::default(); // default capacity is 16
+    // or you can specify the capacity
+    // let mut map: CompactMap<&str, i32, 32> = CompactMap::default();
+
+    map.insert("a", 1);
+    map.insert("b", 2);
+}
+```
+
