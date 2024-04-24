@@ -4,6 +4,7 @@
 [![Documentation][docs-badge]][docs-url]
 [![Latest Docs][docs-badge-latest]][latest-docs-url]
 ![MIT licensed][license-badge]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flightsing%2Fcompact-map.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Flightsing%2Fcompact-map?ref=badge_shield)
 
 [crates-badge]: https://img.shields.io/crates/v/compact-map.svg
 [crates-url]: https://crates.io/crates/compact-map
@@ -51,3 +52,6 @@ The benchmark uses a random action sequence of 1000 insertions, deletions with d
 <img src="./benches/random_test_u64_key_pair.svg" alt="u64 key pair" width="45%">
 <img src="./benches/random_test_u128_key_pair.svg" alt="u128 key pair" width="45%">
 </p>
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flightsing%2Fcompact-map.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Flightsing%2Fcompact-map?ref=badge_large)
